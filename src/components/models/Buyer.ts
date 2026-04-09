@@ -5,7 +5,6 @@ type BuyerErrors = Partial<Record<keyof larekBuyer, string>>;
 export class Buyer {
   private data: Partial<larekBuyer> = {};
 
-  // Сохраняем (частичное обновление)
   setData(data: Partial<larekBuyer>): void {
     this.data = {
       ...this.data,
@@ -13,17 +12,14 @@ export class Buyer {
     };
   }
 
-  // Получаем все данные
   getData(): Partial<larekBuyer> {
     return this.data;
   }
 
-  // Очищаем данные
   clear(): void {
     this.data = {};
   }
 
-  // Валидация
   validate(): BuyerErrors {
     const errors: BuyerErrors = {};
 

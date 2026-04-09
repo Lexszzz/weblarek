@@ -26,13 +26,13 @@ export interface larekBuyer {
   address: string;
 }
 
-export interface larekProductsResponse {
-  items: larekProduct[];
+export interface larekOrderRequest extends larekBuyer {
+  items: string[];
   total: number;
 }
 
-export interface larekOrderRequest extends larekBuyer {
-  items: string[];
+export interface larekProductsResponse {
+  items: larekProduct[];
   total: number;
 }
 

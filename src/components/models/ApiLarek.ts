@@ -9,12 +9,10 @@ export class ApiLarek {
     this.api = api;
   }
 
-  // Получаем список товаров
   getProducts(): Promise<larekProductsResponse> {
     return this.api.get<larekProductsResponse>("/product/");
   }
 
-  // Создаем и отправляем заказ
   createOrder(data: larekOrderRequest): Promise<larekOrderResponse> {
     return this.api.post<larekOrderResponse>("/order/", data);
   }

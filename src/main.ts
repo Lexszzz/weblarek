@@ -7,7 +7,9 @@ import { Api } from "./components/base/Api";
 import { API_URL } from "./utils/constants";
 import { apiProducts } from "./utils/data";
 
-// Каталог
+
+//Проверяем
+//Каталог
 const catalog = new Catalog();
 
 catalog.setProducts(apiProducts.items);
@@ -23,7 +25,7 @@ if (foundProduct) {
 
 console.log("Каталог: выбранный товар", catalog.getSelectedProduct());
 
-// Корзина
+//Корзина
 const cart = new Cart();
 
 const item1 = apiProducts.items[0];
@@ -43,7 +45,7 @@ console.log("Корзина: после удаления item1", cart.getItems()
 cart.clear();
 console.log("Корзина: после очистки", cart.getItems());
 
-// Покупатель
+//Покупатель
 const buyer = new Buyer();
 
 buyer.setData({ email: "pm8@yandex.com" });
