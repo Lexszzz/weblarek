@@ -1,23 +1,31 @@
-import { larekBuyer } from "../../types";
-
-type BuyerErrors = Partial<Record<keyof larekBuyer, string>>;
+import { LarekBuyer, BuyerErrors } from "../../types";
 
 export class Buyer {
-  private data: Partial<larekBuyer> = {};
+  private data: LarekBuyer = {
+    payment: null,
+    email: "",
+    phone: "",
+    address: "",
+  };
 
-  setData(data: Partial<larekBuyer>): void {
+  setData(data: Partial<LarekBuyer>): void {
     this.data = {
       ...this.data,
       ...data,
     };
   }
 
-  getData(): Partial<larekBuyer> {
+  getData(): LarekBuyer {
     return this.data;
   }
 
   clear(): void {
-    this.data = {};
+    this.data = {
+      payment: null,
+      email: "",
+      phone: "",
+      address: "",
+    };
   }
 
   validate(): BuyerErrors {

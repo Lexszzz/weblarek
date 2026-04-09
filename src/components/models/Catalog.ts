@@ -1,26 +1,26 @@
-import { larekProduct } from "../../types";
+import { LarekProduct } from "../../types";
 
 export class Catalog {
-  private products: larekProduct[] = [];
-  private selectedProduct: larekProduct | null = null;
+  private products: LarekProduct[] = [];
+  private selectedProduct: LarekProduct | null = null;
 
-  setProducts(products: larekProduct[]): void {
+  setProducts(products: LarekProduct[]): void {
     this.products = products;
   }
 
-  getProducts(): larekProduct[] {
+  getProducts(): LarekProduct[] {
     return this.products;
   }
 
-  getProductById(id: string): larekProduct | undefined {
+  getProductById(id: string): LarekProduct | undefined {
     return this.products.find((product) => product.id === id);
   }
 
-  setSelectedProduct(product: larekProduct): void {
+  setSelectedProduct(product: LarekProduct): void {
     this.selectedProduct = product;
   }
 
-  getSelectedProduct(): larekProduct | null {
+  getSelectedProduct(): LarekProduct | null {
     return this.selectedProduct;
   }
 }

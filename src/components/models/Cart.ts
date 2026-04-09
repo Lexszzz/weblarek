@@ -1,17 +1,17 @@
-import { larekProduct } from "../../types";
+import { LarekProduct } from "../../types";
 
 export class Cart {
-  private items: larekProduct[] = [];
+  private items: LarekProduct[] = [];
 
-  getItems(): larekProduct[] {
+  getItems(): LarekProduct[] {
     return this.items;
   }
 
-  addItem(product: larekProduct): void {
+  addItem(product: LarekProduct): void {
     this.items.push(product);
   }
 
-  removeItem(product: larekProduct): void {
+  removeItem(product: LarekProduct): void {
     this.items = this.items.filter((item) => item.id !== product.id);
   }
 

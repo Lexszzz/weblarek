@@ -1,7 +1,9 @@
-import { IApi } from "../../types";
-import { larekProductsResponse } from "../../types";
-import { larekOrderRequest } from "../../types";
-import { larekOrderResponse } from "../../types";
+import {
+  IApi,
+  LarekProductsResponse,
+  LarekOrderRequest,
+  LarekOrderResponse,
+} from "../../types";
 
 export class ApiLarek {
   private api: IApi;
@@ -9,11 +11,11 @@ export class ApiLarek {
     this.api = api;
   }
 
-  getProducts(): Promise<larekProductsResponse> {
-    return this.api.get<larekProductsResponse>("/product/");
+  getProducts(): Promise<LarekProductsResponse> {
+    return this.api.get<LarekProductsResponse>("/product/");
   }
 
-  createOrder(data: larekOrderRequest): Promise<larekOrderResponse> {
-    return this.api.post<larekOrderResponse>("/order/", data);
+  createOrder(data: LarekOrderRequest): Promise<LarekOrderResponse> {
+    return this.api.post<LarekOrderResponse>("/order/", data);
   }
 }

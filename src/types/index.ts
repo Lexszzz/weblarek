@@ -1,5 +1,6 @@
 export type ApiPostMethods = "POST" | "PUT" | "DELETE";
 export type TPayment = "cash" | "card";
+export type BuyerErrors = Partial<Record<keyof LarekBuyer, string>>;
 
 export interface IApi {
   get<T extends object>(uri: string): Promise<T>;
@@ -10,7 +11,7 @@ export interface IApi {
   ): Promise<T>;
 }
 
-export interface larekProduct {
+export interface LarekProduct {
   id: string;
   description: string;
   image: string;
@@ -19,24 +20,24 @@ export interface larekProduct {
   price: number | null;
 }
 
-export interface larekBuyer {
+export interface LarekBuyer {
   payment: TPayment | null;
   email: string;
   phone: string;
   address: string;
 }
 
-export interface larekOrderRequest extends larekBuyer {
+export interface LarekOrderRequest extends LarekBuyer {
   items: string[];
   total: number;
 }
 
-export interface larekProductsResponse {
-  items: larekProduct[];
+export interface LarekProductsResponse {
+  items: LarekProduct[];
   total: number;
 }
 
-export interface larekOrderResponse {
+export interface LarekOrderResponse {
   id: string;
   total: number;
 }
