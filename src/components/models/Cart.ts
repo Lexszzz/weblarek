@@ -1,7 +1,10 @@
 import { LarekProduct } from "../../types";
+import { EventEmitter } from "../base/Events";
 
 export class Cart {
   private items: LarekProduct[] = [];
+
+  constructor(private events: EventEmitter) {}
 
   getItems(): LarekProduct[] {
     return this.items;
@@ -9,14 +12,17 @@ export class Cart {
 
   addItem(product: LarekProduct): void {
     this.items.push(product);
+    this.events.emit("cart:changed", { items: this.items });
   }
 
   removeItem(product: LarekProduct): void {
     this.items = this.items.filter((item) => item.id !== product.id);
+    this.events.emit("cart:changed", { items: this.items });
   }
 
   clear(): void {
     this.items = [];
+    this.events.emit("cart:changed", { items: this.items });
   }
 
   getTotalPrice(): number {

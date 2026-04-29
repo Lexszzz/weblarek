@@ -1,4 +1,5 @@
 import { LarekBuyer, BuyerErrors } from "../../types";
+import { EventEmitter } from "../base/Events";
 
 export class Buyer {
   private data: LarekBuyer = {
@@ -8,11 +9,15 @@ export class Buyer {
     address: "",
   };
 
+  constructor(private events: EventEmitter) {}
+
   setData(data: Partial<LarekBuyer>): void {
     this.data = {
       ...this.data,
       ...data,
     };
+
+    this.events.emit("buyer:changed", { data: this.data });
   }
 
   getData(): LarekBuyer {
@@ -26,6 +31,8 @@ export class Buyer {
       phone: "",
       address: "",
     };
+
+    this.events.emit("buyer:changed", { data: this.data });
   }
 
   validate(): BuyerErrors {
