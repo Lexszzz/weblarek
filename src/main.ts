@@ -121,7 +121,6 @@ events.on("product:select", ({ id }: { id: string }) => {
   catalog.setSelectedProduct(product);
 });
 
-//
 events.on("product:selected", () => {
   const product = catalog.getSelectedProduct();
   if (!product) return;

@@ -30,7 +30,7 @@ export class BaseForm extends Component<Record<string, string>> {
     });
   }
 
-  // собираем данные формы (внутренний метод, не "get" наружу)
+  // сбор данных с формы
   protected getFormData(): Record<string, string> {
     const formData = new FormData(this.form);
     return Object.fromEntries(formData.entries()) as Record<string, string>;
