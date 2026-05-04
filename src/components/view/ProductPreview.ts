@@ -1,33 +1,49 @@
-import { BaseCard } from "./BaseCard";
-import { EventEmitter } from "../base/Events";
+import { BaseCard, BaseCardData } from "./BaseCard";
+import { categoryMap } from "../../utils/constants";
 
 type ProductPreviewData = {
-  id: string;
-  title: string;
   image: string;
   category: string;
-  priceLabel: string;
   description: string;
   buttonText: string;
   isButtonDisabled: boolean;
 };
 
-export class ProductPreview extends BaseCard<ProductPreviewData> {
+type ProductPreviewActions = {
+  onToggle: () => void;
+};
+
+export class ProductPreview extends BaseCard<
+  BaseCardData & ProductPreviewData
+> {
+  private imageElement: HTMLImageElement;
+  private categoryElement: HTMLElement;
   private descriptionElement: HTMLElement;
   private buttonElement: HTMLButtonElement;
 
-  constructor(
-    container: HTMLElement,
-    private events: EventEmitter,
-  ) {
+  constructor(container: HTMLElement, actions: ProductPreviewActions) {
     super(container);
 
+    this.imageElement = this.container.querySelector(".card__image")!;
+    this.categoryElement = this.container.querySelector(".card__category")!;
     this.descriptionElement = this.container.querySelector(".card__text")!;
     this.buttonElement = this.container.querySelector(".card__button")!;
 
-    this.buttonElement.addEventListener("click", () => {
-      this.events.emit("product:toggle", { id: this.id });
-    });
+    this.buttonElement.addEventListener("click", actions.onToggle);
+  }
+
+  set image(value: string) {
+    this.setImage(this.imageElement, value);
+  }
+
+  set category(value: string) {
+    this.categoryElement.textContent = value;
+    this.categoryElement.className = "card__category";
+
+    const modifier = categoryMap[value as keyof typeof categoryMap];
+    if (modifier) {
+      this.categoryElement.classList.add(modifier);
+    }
   }
 
   set description(value: string) {

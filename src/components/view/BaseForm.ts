@@ -17,31 +17,28 @@ export class BaseForm extends Component<Record<string, string>> {
     this.submitButton = this.form.querySelector("button[type='submit']")!;
 
     // ввод данных
-    this.form.addEventListener("input", () => {
-      const data = this.getFormData();
-      this.events.emit("form:change", data);
+    this.form.addEventListener("input", (e: Event) => {
+      const target = e.target as HTMLInputElement;
+
+      if (!target.name) return;
+
+      this.events.emit("form:change", {
+        field: target.name,
+        value: target.value,
+      });
     });
 
     // отправка формы
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const data = this.getFormData();
-      this.events.emit("form:submit", data);
+      this.events.emit("form:submit");
     });
   }
 
-  // сбор данных с формы
-  protected getFormData(): Record<string, string> {
-    const formData = new FormData(this.form);
-    return Object.fromEntries(formData.entries()) as Record<string, string>;
-  }
-
-  // установка ошибок
   set errors(value: string) {
     this.errorsElement.textContent = value;
   }
 
-  // управление кнопкой
   set isValid(value: boolean) {
     this.submitButton.disabled = !value;
   }
