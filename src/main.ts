@@ -226,19 +226,17 @@ events.on("buyer:changed", () => {
   const data = buyer.getData();
   const errors = buyer.validate();
 
-  if (currentModal === "order") {
-    orderForm.address = data.address;
-    orderForm.payment = data.payment ?? "";
-    orderForm.isValid = !errors.address && !errors.payment;
-    orderForm.errors = errors.address || errors.payment || "";
-  }
+  // OrderForm
+  orderForm.address = data.address;
+  orderForm.payment = data.payment ?? "";
+  orderForm.isValid = !errors.address && !errors.payment;
+  orderForm.errors = errors.address || errors.payment || "";
 
-  if (currentModal === "contacts") {
-    contactsForm.email = data.email;
-    contactsForm.phone = data.phone;
-    contactsForm.isValid = !errors.email && !errors.phone;
-    contactsForm.errors = errors.email || errors.phone || "";
-  }
+  // ContactsForm
+  contactsForm.email = data.email;
+  contactsForm.phone = data.phone;
+  contactsForm.isValid = !errors.email && !errors.phone;
+  contactsForm.errors = errors.email || errors.phone || "";
 });
 
 //Submit
